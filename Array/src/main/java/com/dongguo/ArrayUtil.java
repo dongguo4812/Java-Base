@@ -6,25 +6,151 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-public class Sort {
+public class ArrayUtil {
+    //开始时间
     private static long startTime;
+    //结束时间
     private static long endTime;
 
-    // 清空数组
+    /**
+     * 数组的最大值
+     *
+     * @param arr
+     * @return
+     */
+    public static int getMax(int[] arr) {
+        int max = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (max < arr[i]) {
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+
+    /**
+     * 数组的最小值
+     *
+     * @param arr
+     * @return
+     */
+    public static int getMin(int[] arr) {
+        int min = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (min > arr[i]) {
+                min = arr[i];
+            }
+        }
+        return min;
+    }
+
+    /**
+     * 总和
+     *
+     * @param arr
+     * @return
+     */
+    public static int getSub(int[] arr) {
+        int sub = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sub += arr[i];
+        }
+        return sub;
+    }
+
+    /**
+     * 平均数
+     * @param arr
+     * @return
+     */
+    public static int getAvg(int[] arr) {
+        int sub = getSub(arr);
+        return sub / arr.length;
+    }
+
+    /**
+     * 反转数组
+     * @param arr
+     */
+    public static void reverse(int[] arr){
+        int temp;
+        for (int i = 0; i < arr.length / 2; i++) {
+            temp = arr[i];
+            arr[i] = arr[arr.length - 1 - i];
+            arr[arr.length - 1 - i] = temp;
+        }
+    }
+
+    /**
+     * 复制数组
+     * @param arr
+     * @return
+     */
+    public static int[] copy(int[] arr){
+        int[] copyArr = new int[arr.length];
+        for (int i=0;  i<arr.length; i++){
+            copyArr[i] = arr[i];
+        }
+        return copyArr;
+    }
+
+    /**
+     * 遍历数组
+     * @param arr
+     */
+    public static void print(int[] arr){
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + "\t");
+        }
+    }
+
+    /**
+     * 查找指定元素
+     * @param arr
+     * @param item
+     * @return
+     */
+    public static int getIndex(int[] arr, int item) {
+        for (int i = 0; i < arr.length; i++) {
+            if (item == arr[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 清空数组
+     *
+     * @param array
+     */
     public static void clearArray(int[] array) {
         Arrays.fill(array, 0);
     }
 
-    // 打印数组
+    /**
+     * 打印int数组
+     *
+     * @param array
+     */
     public static void printArray(int[] array) {
         System.out.print(Arrays.toString(array));
     }
 
+    /**
+     * 打印double数组
+     *
+     * @param array
+     */
     public static void printArray(double[] array) {
         System.out.print(Arrays.toString(array));
     }
 
-    // 插入排序
+    /**
+     * 插入排序
+     *
+     * @param array
+     */
     public static void insertSort(int[] array) {
         startTime = new Date().getTime();
         for (int i = 1; i < array.length; i++) {
@@ -42,7 +168,11 @@ public class Sort {
         System.out.println("运行时间为：" + (endTime - startTime) + "ms");
     }
 
-    // 冒泡排序
+    /**
+     * 冒泡排序
+     *
+     * @param array
+     */
     public static void bubbleSort(int[] array) {
         startTime = new Date().getTime();
         for (int j = array.length - 1; j >= 0; --j) {
@@ -58,7 +188,11 @@ public class Sort {
         System.out.println("运行时间为：" + (endTime - startTime) + "ms");
     }
 
-    // 简单选择排序
+    /**
+     * 简单选择排序
+     *
+     * @param array
+     */
     public static void selectSort(int[] array) {
         startTime = new Date().getTime();
         for (int i = 0; i < array.length; ++i) {
@@ -77,7 +211,11 @@ public class Sort {
         System.out.println("运行时间为：" + (endTime - startTime) + "ms");
     }
 
-    // 希尔排序
+    /**
+     * 希尔排序1
+     *
+     * @param array
+     */
     public static void shellSort(int[] array) {
         startTime = new Date().getTime();
         int d = array.length;
@@ -101,7 +239,11 @@ public class Sort {
         System.out.println("运行时间为：" + (endTime - startTime) + "ms");
     }
 
-    // 希尔排序2
+    /**
+     * 希尔排序2
+     *
+     * @param array
+     */
     public static void shellSortTwo(int[] array) {
         startTime = new Date().getTime();
         int s = array.length;
@@ -126,7 +268,13 @@ public class Sort {
         System.out.println("运行时间为：" + (endTime - startTime) + "ms");
     }
 
-    // 快速排序
+    /**
+     * 快速排序
+     *
+     * @param array
+     * @param start
+     * @param end
+     */
     public static void quickSort(int[] array, int start, int end) {
         if (start == 0 && end == array.length - 1)
             startTime = new Date().getTime();
@@ -141,7 +289,14 @@ public class Sort {
         }
     }
 
-    // 划分数组
+    /**
+     * 划分数组
+     *
+     * @param array
+     * @param start
+     * @param end
+     * @return
+     */
     public static int quickSortPartition(int[] array, int start, int end) {
         int partition = array[start];
         int i = start;
@@ -164,7 +319,13 @@ public class Sort {
         return i;
     }
 
-    // 快速排序2
+    /**
+     * 快速排序2
+     *
+     * @param array
+     * @param start
+     * @param end
+     */
     public static void quickSortTwo(int[] array, int start, int end) {
         if (start == 0 && end == array.length - 1)
             startTime = new Date().getTime();
@@ -179,7 +340,14 @@ public class Sort {
         }
     }
 
-    // 划分数组2
+    /**
+     * 划分数组2
+     *
+     * @param array
+     * @param start
+     * @param end
+     * @return
+     */
     public static int quickSortPartitionTwo(int[] array, int start, int end) {
         int partition = array[end];
         int i = start;
@@ -199,7 +367,13 @@ public class Sort {
         return i + 1;
     }
 
-    // 调整堆
+    /**
+     * 调整堆
+     *
+     * @param array
+     * @param start
+     * @param end
+     */
     public static void adjustHeap(int[] array, int start, int end) {
         int max;
         int maxIndex;
@@ -220,7 +394,13 @@ public class Sort {
         }
     }
 
-    // 调整堆2
+    /**
+     * 调整堆2
+     *
+     * @param array
+     * @param start
+     * @param end
+     */
     public static void adjustHeap2(int[] array, int start, int end) {
         int l = 2 * start + 1;
         int r = 2 * start + 2;
@@ -242,21 +422,39 @@ public class Sort {
         }
     }
 
-    // 建堆
+    /**
+     * 建堆
+     *
+     * @param array
+     * @param start
+     * @param end
+     */
     public static void buildHeap(int[] array, int start, int end) {
         for (int index = (end + 1) / 2 - 1; index >= start; --index) {
             adjustHeap(array, index, end);
         }
     }
 
-    // 建堆2
+    /**
+     * 建堆2
+     *
+     * @param array
+     * @param start
+     * @param end
+     */
     public static void buildHeap2(int[] array, int start, int end) {
         for (int index = (end + 1) / 2 - 1; index >= start; --index) {
             adjustHeap2(array, index, end);
         }
     }
 
-    // 堆排序
+    /**
+     * 堆排序
+     *
+     * @param array
+     * @param start
+     * @param end
+     */
     public static void heapSort(int[] array, int start, int end) {
         startTime = new Date().getTime();
         buildHeap(array, start, end);
@@ -271,7 +469,13 @@ public class Sort {
         System.out.println("运行时间为：" + (endTime - startTime) + "ms");
     }
 
-    // 堆排序2
+    /**
+     * 堆排序2
+     *
+     * @param array
+     * @param start
+     * @param end
+     */
     public static void heapSort2(int[] array, int start, int end) {
         startTime = new Date().getTime();
         buildHeap2(array, start, end);
@@ -286,7 +490,13 @@ public class Sort {
         System.out.println("运行时间为：" + (endTime - startTime) + "ms");
     }
 
-    // 并归排序
+    /**
+     * 并归排序
+     *
+     * @param array
+     * @param start
+     * @param end
+     */
     public static void mergeSort(int[] array, int start, int end) {
         if (start == 0 && end == array.length - 1)
             startTime = new Date().getTime();
@@ -302,7 +512,14 @@ public class Sort {
         }
     }
 
-    // 合并数组
+    /**
+     * 合并数组
+     *
+     * @param array
+     * @param start
+     * @param s
+     * @param end
+     */
     public static void merge(int[] array, int start, int s, int end) {
         int[] a = Arrays.copyOfRange(array, start, s + 1);
         int[] b = Arrays.copyOfRange(array, s + 1, end + 1);
@@ -321,7 +538,13 @@ public class Sort {
         }
     }
 
-    // 计数排序
+    /**
+     * 计数排序
+     *
+     * @param array
+     * @param k
+     * @return
+     */
     public static int[] countSort(int[] array, int k) {
         startTime = new Date().getTime();
         int[] b = new int[array.length];
@@ -344,8 +567,12 @@ public class Sort {
         return b;
     }
 
-    /*
+    /**
      * 基数排序 稳定的排序算法 array 代表数组 radix 代表基数 d 代表排序元素的位数
+     *
+     * @param array
+     * @param radix
+     * @param d
      */
     public static void radixSort(int[] array, int radix, int d) {
         startTime = new Date().getTime();
@@ -381,7 +608,13 @@ public class Sort {
         System.out.println("运行时间为：" + (endTime - startTime) + "ms");
     }
 
-    // 桶排序
+    /**
+     * 桶排序
+     *
+     * @param array
+     * @param k
+     * @return
+     */
     public static int[] bucketSort(int array[], int k) {
         startTime = new Date().getTime();
         double[] arrayTemp;
@@ -406,7 +639,13 @@ public class Sort {
         return bucketHandleScopeAfter(obj, 1 / (double) k);
     }
 
-    // 桶排序处理数组
+    /**
+     * 桶排序处理数组
+     *
+     * @param array
+     * @param k
+     * @return
+     */
     public static double[] bucketHandleScope(int array[], int k) {
         double[] arrayDouble = new double[array.length];
         for (int i = 0; i < array.length; ++i) {
@@ -414,7 +653,14 @@ public class Sort {
         }
         return arrayDouble;
     }
-    // 桶排序后处理数组
+
+    /**
+     * 桶排序后处理数组
+     *
+     * @param array
+     * @param k
+     * @return
+     */
     public static int[] bucketHandleScopeAfter(Object array[], double k) {
         int[] arrayDouble = new int[array.length];
         for (int i = 0; i < array.length; ++i) {

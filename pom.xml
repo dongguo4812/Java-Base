@@ -19,6 +19,7 @@
         <module>Net</module>
         <module>Reflect</module>
         <module>Proxy</module>
+        <module>java8</module>
         <module>Java9</module>
         <module>Java9Test</module>
         <module>Java10</module>

@@ -22,6 +22,7 @@
         <module>Java9</module>
         <module>Java9Test</module>
         <module>Java10</module>
+        <module>Java11</module>
     </modules>
 
     <properties>

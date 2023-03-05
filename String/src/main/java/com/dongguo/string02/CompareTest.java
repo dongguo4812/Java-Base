@@ -52,7 +52,12 @@ public class CompareTest {
         Arrays.sort(stu, new Comparator<Student>() {
             @Override
             public int compare(Student o1, Student o2) {
-                return Integer.compare(o1.getAge(),o2.getAge());
+                int value = Integer.compare(o1.getAge(), o2.getAge());
+                if (value == 0){
+                   return o1.getName().compareTo(o2.getName());
+                }else {
+                    return value;
+                }
             }
         });
         System.out.println(Arrays.toString(stu));;

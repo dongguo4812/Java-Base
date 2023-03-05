@@ -24,6 +24,7 @@
         <module>Java10</module>
         <module>Java11</module>
         <module>Java8</module>
+        <module>Exception</module>
     </modules>
 
     <properties>

@@ -9,19 +9,22 @@ public class Window implements Runnable {
     private static int ticket = 100;
 
     @Override
-    public synchronized void run() {
+    public void run() {
         while (true) {
-            if (ticket > 0) {
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            synchronized (Window.class){
+                if (ticket > 0) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    ticket--;
+                    System.out.println((Thread.currentThread().getName() + "售票成功，剩余:" + ticket + "张票"));
+                } else {
+                    break;
                 }
-                ticket--;
-                System.out.println((Thread.currentThread().getName() + "售票成功，剩余:" + ticket + "张票"));
-            } else {
-                break;
             }
+
         }
     }
 }

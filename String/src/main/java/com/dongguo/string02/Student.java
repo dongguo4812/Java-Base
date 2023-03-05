@@ -12,25 +12,25 @@ import lombok.experimental.Accessors;
 @Data
 @ToString
 @Accessors(chain = true)
-public class Student implements Comparable{
+public class Student implements Comparable {
     private String name;
     private Integer age;
 
     /**
      * 按照年龄排序
+     *
      * @param o
      * @return
      */
     @Override
     public int compareTo(Object o) {
-        if (o instanceof Student){
+        if (o instanceof Student) {
             Student student = (Student) o;
-            if (this.age > student.getAge()){
-                return 1;
-            }else if (this.age < student.getAge()){
-                return -1;
+            int value = Integer.compare(this.getAge(), ((Student) student).getAge());
+            if (value == 0){
+                this.getName().compareTo(((Student) student).getName());
             }else {
-                return 0;
+                return value;
             }
         }
         throw new RuntimeException("传入的类型错误");
